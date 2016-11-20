@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Makaton to Text
+{% endblock %}
+
+{% block inside_header %}
+	<!-- <span class="content bannerText">Makaton to Text</span> -->
+	<!-- <input class="form-control" type="text" name="makaton-text-translation"> -->
+	<form class="content" action="./index-redirect" method="get">
+		<input class="button" type="submit" value="Cancel adding an image">
+	</form>
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="heading-medium">Choose an image</h1>
+		</div>
+		<!-- <div class="column-one-third">
+			<form class="content" action="./index-redirect" method="get">
+				<input class="button" type="submit" value="Cancel adding an image">
+			</form>
+		</div> -->
+	</div>
+	<div class="grid-row">
+		<div class="column-one-quarter">
+			<p>Types of image</p>
+			<ul class="filter-list">
+				<li><a href="#">Recent</a></li>
+				<li class="selected"><a href="#">Food and drink</a></li>
+				<li><a href="#">Feelings</a></li>
+				<li><a href="#">Morning</a></li>
+				<li><a href="#">Day</a></li>
+				<li><a href="#">Night</a></li>
+			</ul>
+		</div>
+		
+		<div class="column-two-thirds">
+			<ul class="makatonTiles">
+				<li class="makatonTile">
+					<div class="innerContainer">
+						<img src="{{ asset_path }}images/makaton-ph.png">
+						<form class="content" action="./index-redirect" method="get">
+							<input class="makatonTileButton button" type="submit" value="Add image">
+						</form>
+					</div>
+				</li>
+				<li class="makatonTile">
+					<div class="innerContainer">
+						<img src="{{ asset_path }}images/makaton-ph.png">
+						<form class="content" action="./index-redirect" method="get">
+							<input class="makatonTileButton button" type="submit" value="Add image">
+						</form>
+					</div>
+				</li>
+				<li class="makatonTile">
+					<div class="innerContainer">
+						<img src="{{ asset_path }}images/makaton-ph.png">
+						<form class="content" action="./index-redirect" method="get">
+							<input class="makatonTileButton button" type="submit" value="Add image">
+						</form>
+					</div>
+				</li>
+				<li class="makatonTile">
+					<div class="innerContainer">
+						<img src="{{ asset_path }}images/makaton-ph.png">
+						<form class="content" action="./index-redirect" method="get">
+							<input class="makatonTileButton button" type="submit" value="Add image">
+						</form>
+					</div>
+				</li>
+				<li class="makatonTile">
+					<div class="innerContainer">
+						<img src="{{ asset_path }}images/makaton-ph.png">
+						<form class="content" action="./index-redirect" method="get">
+							<input class="makatonTileButton button" type="submit" value="Add image">
+						</form>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</main>
+
+{% endblock %}
+
+{% block page_scripts %}
+<!-- Purely for prototype demoing to team  -->
+<script>
+	$(document).ready(function() {
+		//REMOVING IMAGES
+		$('.filter-list a').click(function(event){
+	    	$('.filter-list li').removeClass("selected");
+	    	$(this).closest($("li")).addClass("selected");
+	    });
+	});
+</script>
+{% endblock %}

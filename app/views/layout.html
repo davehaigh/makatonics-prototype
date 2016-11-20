@@ -4,6 +4,11 @@
   {% include "includes/head.html" %}
 {% endblock %}
 
+{% block proposition_header %}
+  {% include "includes/propositional_navigation.html" %}
+{% endblock %}
+
 {% block body_end %}
   {% include "includes/scripts.html" %}
+  {% block page_scripts %}{% endblock %}
 {% endblock %}

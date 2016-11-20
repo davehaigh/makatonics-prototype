@@ -1,7 +1,7 @@
 {% block top_of_page %}{% endblock %}
 <!DOCTYPE html>
 <!--[if lt IE 9]><html class="lte-ie8" lang="{{ html_lang|default('en') }}"><![endif]-->
-<!--[if gt IE 8]><!--><html lang="{{ html_lang|default('en') }}"><!--<![endif]-->
+<!--[if gt IE 8]><!--><html lang="{{ html_lang|default('en') }}" style="background-color: #fafafa"><!--<![endif]-->
   <head>
     <meta charset="utf-8" />
     <title>{% block page_title %}Makatonics{% endblock %}</title>
@@ -29,7 +29,7 @@
     {% block head %}{% endblock %}
   </head>
 
-  <body class="{% block body_classes %}{% endblock %}">
+  <body class="{% block body_classes %}{% endblock %}" style="background-color: transparent;">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
     {% block body_start %}{% endblock %}
@@ -43,19 +43,17 @@
     <header role="banner" id="global-header" class="{% block header_class %}{% endblock %}">
       <div class="header-wrapper">
         <div class="header-global">
-          {% block inside_header %}{% endblock %}
+          <div class="header-logo">
+            {% block inside_header %}{% endblock %}
+          </div>
         </div>
+        {% block proposition_header %}{% endblock %}
       </div>
     </header>
 
     {% block content %}{% endblock %}
 
-    <footer class="group js-footer" id="footer" role="contentinfo">
-
-      <div class="footer-wrapper">
-        {% block footer_top %}{% endblock %}
-      </div>
-    </footer>
+    
 
     <div id="global-app-error" class="app-error hidden"></div>
 

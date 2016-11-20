@@ -1,31 +1,111 @@
 {% extends "layout.html" %}
 
 {% block page_title %}
-  GOV.UK prototype kit
+  Makaton translator
+{% endblock %}
+
+{% block proposition_header_text %} 
+	{% if serviceName %} {{ serviceName }} {% endif %}
+{% endblock %}
+
+{% block inside_header %}
+	<!-- <span class="content bannerText">Makaton translator</span> -->
 {% endblock %}
 
 {% block content %}
 
 <main id="content" role="main">
 	<div class="grid-row">
-		<div class="column">
-			<h1 class="heading-large">phrase appears here</h1>
-			<!-- <input type="text" name="" class="form-control" value="I am hungry" disabled="true"> -->
-			<ul>
-				<li class="makatonImage"><a href="#"><img src="{{ asset_path }}images/makaton-ph.png"></a></li>
-				<li class="makatonImage"><a href="#"><img src="{{ asset_path }}images/makaton-ph.png"></a></li>
-				<li class="makatonImage"><a href="#"><img src="{{ asset_path }}images/makaton-ph.png"></a></li>
-				<li class="makatonImage"><a href="#"><img src="{{ asset_path }}images/makaton-ph.png"></a></li>
-				<li class="makatonImage"><a href="#"><img src="{{ asset_path }}images/makaton-ph.png"></a></li>
-				<li class="makatonImage"><a href="#"><img src="{{ asset_path }}images/makaton-ph.png"></a></li>
-				<li class="makatonImage"><a href="#"><img src="{{ asset_path }}images/makaton-ph.png"></a></li>
-				<li class="makatonImage"><a href="#"><img src="{{ asset_path }}images/makaton-ph.png"></a></li>
-				<li class="makatonImage"><a href="#"><img src="{{ asset_path }}images/makaton-ph.png"></a></li>
-				<li class="makatonImage"><a href="#"><img src="{{ asset_path }}images/makaton-ph.png"></a></li>
-				<li class="makatonImage"><a href="#"><img src="{{ asset_path }}images/makaton-ph.png"></a></li>
+		<div class="column-two-thirds">
+			<h3 class="heading-medium">Makaton</h3>
+			<!-- <p class="lede">Makaton images</p> -->
+			<!-- <p>Add makaton images and they will automatically get translated to text on the right.</p> -->
+			<form action="./makaton-gallery-redirect" method="get">
+				<fieldset>
+					<div class="form-group">
+						<input class="button" type="submit" value="Add an image">
+					</div>
+				</fieldset>
+			</form>
+			<!-- <input id="remove-all-images" class="button" type="submit" value="Remove all these images"> -->
+			<ul class="makatonTiles">
+				<li class="makatonTile">
+					<div class="innerContainer">
+						<img src="{{ asset_path }}images/makaton-ph.png">
+						<input class="remove-image makatonTileButton button" type="submit" value="Remove image">
+					</div>
+				</li>
+				<li class="makatonTile">
+					<div class="innerContainer">
+						<img src="{{ asset_path }}images/makaton-ph.png">
+						<input class="remove-image makatonTileButton button" type="submit" value="Remove image">
+					</div>
+				</li>
 			</ul>
+		</div>
+		<div class="column-one-third">
+			<h3 class="heading-medium">Text</h3>
+			<input style="width: 100%;" id="text-input" class="form-control" type="text" name="makaton-text-translation" value="original text">
+			<input id="convert-text" class="button" type="submit" value="Translate to Makaton" style="display: none;">
+			<input id="cancel-text" class="button" type="submit" value="Cancel" style="display: none;">
+			<p id="previous-message" style="display: none;">Previous message: <span id="previous-message-content"></span></p>
+			<!-- <h2 class="heading-large">phrase appears here</h2> -->
 		</div>
 	</div>
 </main>
 
+{% endblock %}
+
+{% block page_scripts %}
+
+<!-- Purely for prototype demoing to team  -->
+<script>
+	$(document).ready(function() {
+		//REMOVING IMAGES
+		$('.remove-image').click(function(event){
+			var nearestLi = $(this).closest($('li.makatonTile'));
+	    	nearestLi.remove();
+	    });
+
+		//EDITING TEXT INPUT
+		var textChanged = false,
+			originalText = "";
+	    $('#text-input').focus(function(event){
+	    	if(!textChanged){
+	    		originalText = $('#text-input').val();
+	    		$('#previous-message-content').text(originalText);
+	    	}
+	    	$('#previous-message').show();
+	        $('#convert-text').show();
+	        $('#cancel-text').show();
+	    });
+	    $('#text-input').blur(function(event){
+	    	if(originalText == $('#text-input').val()){
+	        	cancelTextInput();
+	    	} else {
+	    		textChanged = true;
+	    	}
+	    });
+	    $('#cancel-text').click(function(event){
+	        cancelTextInput();
+	    });
+	    $('#convert-text').click(function(event){
+	        convertTextInput();
+	    });
+	    function convertTextInput() {
+	    	textChanged = false;
+	    	//$('#text-input').val();
+    		$('#previous-message').hide();
+    		$('#convert-text').hide();
+	        $('#cancel-text').hide();
+		}
+	    function cancelTextInput() {
+	    	textChanged = false;
+	    	$('#text-input').val(originalText);
+    		$('#previous-message').hide();
+    		$('#convert-text').hide();
+	        $('#cancel-text').hide();
+		}
+	});
+</script>
 {% endblock %}

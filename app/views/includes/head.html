@@ -1,20 +1,58 @@
 <link href="/public/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
 <style type="text/css">
-	.makatonImage{
-		display: inline-block;
-		margin: 10px;
+	#global-header,
+	#global-header .header-wrapper {
+		background-color: #DDDDDD;
 	}
-	.makatonImage a{
-		display: inline-block;
-		border: 4px solid green;
+	#global-header {
+		border-bottom: 1px solid black;
 	}
-	.makatonImage a:focus{
-		border-color: #ffbf47;
+	.makatonTile {
+		/*float: left;*/
+    	box-sizing: border-box;
+    	display: inline-block;
+    	/*margin: 0 20px 20px 0;*/
+	    width: 33.3%;
+	    margin: 0 -4px 0 0;
 	}
-
-	.makatonImage img{	
-		display: inline-block;
-		width: 200px;
-		height: 200px;
+	.makatonTile .innerContainer {
+    	margin: 0 20px 20px 0;
+    	border: solid 1px grey;
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    	transition: 0.3s;
+    	border-radius: 5px;
+    	background-color: white;
+	}
+	@media (min-width: 641px) {
+	  .makatonTile {
+	    /*width: 200px;*/
+	  }
+	}
+	.makatonTile:hover .innerContainer {
+    	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	}
+	.makatonTileButton {
+		width: 100%;
+		border-radius: 0 0 4px 4px;
+	}
+	.makatonTile img {	
+    	/*box-sizing: border-box;*/
+		display: block;
+		width: 100%;
+		border-radius: 5px 5px 0 0;
+	}
+	.filter-list li {
+		margin: 0 0 5px 0;
+		display: block;
+	}
+	.filter-list a {
+		background-color: grey;
+		display: block;
+		padding: 8px 10px;
+		color: white;
+	}
+	.filter-list .selected a {
+		background-color: black;
+		color: white;
 	}
 </style>
